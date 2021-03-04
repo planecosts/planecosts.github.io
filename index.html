@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<!--
+	Projection by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Projection by TEMPLATED</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="index.html" class="logo"><strong>Plane</strong>Costs</a>
+					<nav id="nav">
+						<a href="index.html">Home</a>
+					</nav>
+					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+				</div>
+			</header>
+
+		<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<header>
+						<h1>PlaneCosts</h1>
+					</header>
+
+					<div class="flex ">
+
+						<div>
+							<span class="icon fa-plane"></span>
+							<p>This tool is designed to help you decide whether you should continue to rent, or buy your own plane by walking you through the many associated costs of ownership.</p>
+							<p>Any costs estimates shown here should be used strictly as guides, and not taken as financial advice.</p>
+						</div>
+
+					</div>
+				</div>
+			</section>
+
+
+		<!-- Three -->
+			<section id="three" class="wrapper align-center">
+				<div class="inner">
+					<form id="cost-estimator-form">
+						<div class="dkh-form-body">
+							<div class="dkh-form-header">
+								<strong><small>Current Costs</small></strong>
+							</div>
+							
+							<small>What do you currently pay per hour to rent a plane?</small>
+							<div class="dkh-form-field">
+								<fieldset>
+									<input autofocus class="dkh-form-field__input" name="rental-cph" type="number" min="1" step="1" max="10000" id="rental-cph" required placeholder="Rental Cost">
+								</fieldset>
+							</div>
+							<br>
+
+							<small>How many hours per month do you intend to fly?</small>
+							<div class="dkh-form-field">
+								<fieldset>
+									<input class="dkh-form-field__input" name="hours-per-month" type="number" min="1" step="1" max="10000" id="hours-per-month" required placeholder="Hrs/Mo">
+								</fieldset>
+							</div>
+							<br>
+
+							<div class="dkh-form-header">
+								<strong><small>Fixed Costs</small></strong>
+							</div>
+
+							<small>How much are your loan payments per month?</small>
+							<div class="dkh-form-field">
+								<fieldset>
+									<input class="dkh-form-field__input" name="loan-per-month" type="number" min="1" step="1" max="20000" id="loan-per-month" required placeholder="$/Mo">
+								</fieldset>
+							</div>
+							<br>
+
+							<small>What are your anticipated annual insurance costs?</small>
+							<br>
+							<small>(avg is $1200/yr)</small>
+							<div class="dkh-form-field">
+								<fieldset>
+									<input class="dkh-form-field__input" name="insur-costs" type="number" min="1" step="1" max="10000" id="insur-costs" required placeholder="Insurance">
+								</fieldset>
+							</div>
+							<br>
+
+							<small>What are your anticipated annual inspection costs?</small>
+							<br>
+							<small>(avg is $1800/yr)</small>
+							<div class="dkh-form-field">
+								<fieldset>
+									<input class="dkh-form-field__input" name="inspe-costs" type="number" min="1" step="1" max="20000" id="inspe-costs" required placeholder="Inspection">
+								</fieldset>
+							</div>
+							<br>
+
+							<small>What are your anticipated monthly storage costs?</small>
+							<br>
+							<small>(avg tie-down: $100/mo, avg t-hangar: $350/mo)</small>
+							<div class="dkh-form-field">
+								<fieldset>
+									<input class="dkh-form-field__input" name="stor-costs" type="number" min="1" step="1" max="20000" id="stor-costs" required placeholder="$/Mo">
+								</fieldset>
+							</div>
+							<br>
+
+							<small>How much do you intend to put aside for incidental maintenance?</small>
+							<br>
+							<small>(Most owners estimate $1000-2000/yr)</small>
+							<div class="dkh-form-field">
+								<fieldset>
+									<input class="dkh-form-field__input" name="incid-costs" type="number" min="1" step="1" max="20000" id="incid-costs" required placeholder="Incidentals">
+								</fieldset>
+							</div>
+							<br>
+
+							<div class="dkh-form-header">
+								<strong><small>Operating Costs</small></strong>
+								<br>
+								<strong><small>(Cost per hour to run your new plane)</small></strong>
+							</div>
+
+							<small>What is the fuel burn rate (in gal/hr) of the plane you plan to buy?</small>
+							<div class="dkh-form-field">
+								<fieldset>
+									<input class="dkh-form-field__input" name="fuel-burn-rate" type="number" min="1" step="0.1" max="20000" id="fuel-burn-rate" required placeholder="Gallon/Hr">
+								</fieldset>
+							</div>
+							<br>
+
+							<small>What is the average cost per gallon of fuel in your area?</small>
+							<div class="dkh-form-field">
+								<fieldset>
+									<input class="dkh-form-field__input" name="fuel-cost" type="number" min="1" step="0.01" max="20000" id="fuel-cost" required placeholder="$/Gallon">
+								</fieldset>
+							</div>
+							<br>
+							
+							<small>How much (in dollars) oil do you estimate you new plane burns per hour?</small>
+							<br>
+							<small>($2/hr is a sufficient estimate for most single engine aircraft)</small>
+							<div class="dkh-form-field">
+								<fieldset>
+									<input class="dkh-form-field__input" name="oil-cost" type="number" min="1" step="0.01" max="20000" id="oil-cost" required placeholder="$/Hr">
+								</fieldset>
+							</div>
+							<br>
+
+							<small>How much per tach hour do you plan on contributing to your engine overhaul fund?</small>
+							<br>
+							<small>(at an avg overhaul cost of $20000 every 2000hrs, a minimum of $20/hr is recommended)</small>
+							<div class="dkh-form-field">
+								<fieldset>
+									<input class="dkh-form-field__input" name="engine-fund" type="number" min="1" step="0.01" max="20000" id="engine-fund" required placeholder="$/Hr">
+								</fieldset>
+							</div>
+							<br>
+
+							<small>How much per tach hour do you plan on contributing to your propellor overhaul fund?</small>
+							<br>
+							<small>(at an avg overhaul cost of $5000 every 2000hrs, a minimum of $5/hr is recommended)</small>
+							<div class="dkh-form-field">
+								<fieldset>
+									<input class="dkh-form-field__input" name="pro-fund" type="number" min="1" step="0.01" max="20000" id="pro-fund" required placeholder="$/Hr">
+								</fieldset>
+							</div>
+							<br>
+						</div>
+
+						<div class="dkh-form-footer">
+							<button class="dkh-btn dkh-btn-primary" type="submit">Calculate</button>
+						</div>
+					</form>
+				</div>
+
+				<div id="results" class="flex "></div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+
+					<div class="image round">
+						<img src="images/porkchop.png" alt="Built by Porkchop" />
+					</div>
+
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
