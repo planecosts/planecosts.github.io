@@ -1880,7 +1880,7 @@
 		-moz-justify-content: space-between;
 		-webkit-justify-content: space-between;
 		-ms-justify-content: space-between;
-		justify-content: space-between;
+		justify-content: space-evenly;
 		display: -moz-flex;
 		display: -webkit-flex;
 		display: -ms-flex;
@@ -1889,7 +1889,8 @@
 		-webkit-flex-wrap: wrap;
 		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
-		width: 100%;
+		width: 80%;
+		margin: auto;
 	}
 
 		.flex.flex-2 {
@@ -1903,6 +1904,9 @@
 				width: 50%;
 			}
 
+		.results {
+			border: 1px solid gray;
+		}
 		@media screen and (max-width: 980px) {
 
 			.flex.flex-2 article {
