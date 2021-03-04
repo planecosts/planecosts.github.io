@@ -8,9 +8,18 @@ function formatCurrency(amount) {
 	return `$${parseFloat(amount).toFixed(2)}`
 }
 
+function writeData (title, value) {
+	return `<strong><small>${title}:</strong> ${value}</small><br>`
+}
+
+function getIntDifference (value1, value2) {
+	return Math.abs(value1 - value2)
+}
+
 function calculate(event) {
 	event.preventDefault()
-	var resultsDiv = document.querySelector('#results')
+	var baseResultsDiv = document.querySelector('#base-results')
+	var summaryResultsDiv = document.querySelector('#summary-results')
 	
 	var formDataArr = $('#cost-estimator-form').serializeArray()
 	var formData = {}
@@ -21,17 +30,19 @@ function calculate(event) {
 	console.log(formData)
 
 	var costPerMonth = formData["rental-cph"] * formData["hours-per-month"]
+	var rentalCostPerYear = costPerMonth * 12
+	var hoursPerYear = formData["hours-per-month"] * 12
 	var currentCostsDiv = document.createElement('div')
 	currentCostsDiv.id = "current-cost-result"
-	currentCostsDiv.className = "container"
+	// currentCostsDiv.className = "container"
 	currentCostsDiv.innerHTML = 
 		`<h3>Current Costs</h3>\
-<strong><small>Rental Cost per Hour:</strong> ${formatCurrency(formData["rental-cph"])}</small><br>\
-<strong><small>Hours Flown per Month:</strong> ${formData["hours-per-month"]}</small><br>\
-<strong><small>Hours Flown per Year:</strong> ${formData["hours-per-month"] * 12}</small><br>\
-<br>
-<strong><small>Cost per Month:</strong> ${formatCurrency(costPerMonth)}</small><br>\
-<strong><small>Cost per Year:</strong> ${formatCurrency(costPerMonth * 12)}</small>`
+${writeData("Rental Cost per Hour", formatCurrency(formData["rental-cph"]))}\
+${writeData("Hours Flown per Month", formData["hours-per-month"])}\
+${writeData("Hours Flown per Year", hoursPerYear)}\
+<br>\
+${writeData("Cost per Month", formatCurrency(costPerMonth))}\
+${writeData("Cost per Year", formatCurrency(costPerMonth * 12))}`
 
 
 	var annualLoanCosts = formData["loan-per-month"] * 12
@@ -39,40 +50,64 @@ function calculate(event) {
 	var annualFixedCosts = annualLoanCosts + formData["insur-costs"] + formData["inspe-costs"] + annualStorageCosts + formData["incid-costs"]
 	var fixedCostsDiv = document.createElement('div')
 	fixedCostsDiv.id = "fixed-cost-result"
-	fixedCostsDiv.className = "container"
+	// fixedCostsDiv.className = "container"
 	fixedCostsDiv.innerHTML = 
 		`<h3>Fixed Costs</h3>\
-<strong><small>Monthly Loan Payments:</strong> ${formatCurrency(formData["loan-per-month"])}</small><br>\
-<strong><small>Annual Loan Payments:</strong> ${formatCurrency(annualLoanCosts)}</small><br>\
-<strong><small>Annual Insurance Costs:</strong> ${formatCurrency(formData["insur-costs"])}</small><br>\
-<strong><small>Annual Inspection Costs:</strong> ${formatCurrency(formData["inspe-costs"])}</small><br>\
-<strong><small>Monthly Storage Costs:</strong> ${formatCurrency(formData["stor-costs"])}</small><br>\
-<strong><small>Annual Storage Costs:</strong> ${formatCurrency(annualStorageCosts)}</small><br>\
-<strong><small>Incidentals:</strong> ${formatCurrency(formData["incid-costs"])}</small><br>\
+${writeData("Monthly Loan Payments", formatCurrency(formData["loan-per-month"]))}\
+${writeData("Annual Loan Payments", formatCurrency(annualLoanCosts))}\
+${writeData("Annual Insurance Costs", formatCurrency(formData["insur-costs"]))}\
+${writeData("Annual Inspection Costs", formatCurrency(formData["inspe-costs"]))}\
+${writeData("Monthly Storage Costs", formatCurrency(formData["stor-costs"]))}\
+${writeData("Annual Storage Costs", formatCurrency(annualStorageCosts))}\
+${writeData("Incidentals", formatCurrency(formData["incid-costs"]))}\
 <br>\
-<strong><small>Total Annual Cost:</strong> ${formatCurrency(annualFixedCosts)}</small>`
+${writeData("Annual Fixed Costs", formatCurrency(annualFixedCosts))}`
 
 	var fuelCostPerHour = formData['fuel-burn-rate'] * formData['fuel-cost']
 	var totalOperatingCost = fuelCostPerHour + formData['oil-cost'] + formData['engine-fund'] + formData['prop-fund']
 	var operatingCostsDiv = document.createElement('div')
 	operatingCostsDiv.id = "operating-cost-result"
-	operatingCostsDiv.className = "container"
+	// operatingCostsDiv.className = "container"
 	operatingCostsDiv.innerHTML = 
 		`<h3>Hourly Operating Costs</h3>\
-<strong><small>Fuel Burn Rate:</strong> ${formData['fuel-burn-rate']} gallons/hour</small><br>\
-<strong><small>Fuel Cost:</strong> ${formatCurrency(formData['fuel-cost'])}</small><br>\
-<strong><small>Fuel Cost per Hour:</strong> ${formatCurrency(fuelCostPerHour)}</small><br>\
-<strong><small>Oil Cost per Hour:</strong> ${formatCurrency(formData['oil-cost'])}</small><br>\
-<strong><small>Engine Overhaul Fund per Hour:</strong> ${formatCurrency(formData['engine-fund'])}</small><br>\
-<strong><small>Prop Overhaul Fund per Hour:</strong> ${formatCurrency(formData['prop-fund'])}</small><br>\
-<strong><small>:</strong> ${formatCurrency()}</small><br>\
+${writeData("Fuel Burn Rate", `${formData['fuel-burn-rate']} gallons/hour`)}\
+${writeData("Fuel Cost", formatCurrency(formData['fuel-cost']))}\
+${writeData("Fuel Cost per Hour", formatCurrency(fuelCostPerHour))}\
+${writeData("Oil Cost per Hour", formatCurrency(formData['oil-cost']))}\
+${writeData("Engine Overhaul Fund per Hour", formatCurrency(formData['engine-fund']))}\
+${writeData("Prop Overhaul Fund per Hour", formatCurrency(formData['prop-fund']))}\
 <br>\
-<strong><small>Total Operating Cost per Hour:</strong> ${formatCurrency(totalOperatingCost)}</small>`
+${writeData("Total Operating Cost per Hour", formatCurrency(totalOperatingCost))}`
 
-	resultsDiv.innerHTML = ""
-	resultsDiv.appendChild(currentCostsDiv)
-	resultsDiv.appendChild(fixedCostsDiv)
-	resultsDiv.appendChild(operatingCostsDiv)
+	baseResultsDiv.innerHTML = ""
+	baseResultsDiv.appendChild(currentCostsDiv)
+	baseResultsDiv.appendChild(fixedCostsDiv)
+	baseResultsDiv.appendChild(operatingCostsDiv)
+
+	var realHourlyOperatingCost = (annualFixedCosts/hoursPerYear) + totalOperatingCost
+	var annualOwnershipCost = (totalOperatingCost * hoursPerYear) + annualFixedCosts
+	var hourlyCostDelta = getIntDifference(realHourlyOperatingCost, formData['rental-cph'])
+	var annualCostDelta = getIntDifference(annualOwnershipCost, rentalCostPerYear)
+	var isRentingCheaper = rentalCostPerYear < annualOwnershipCost
+	var finalStatement = `It looks like you stand to save ${formatCurrency(hourlyCostDelta)}/hr, or ${formatCurrency(annualCostDelta)}/yr, by ${isRentingCheaper ? "continuing to rent." : "purchasing your own plane."}`
+	
+	var summaryDiv = document.createElement('div')
+	summaryDiv.id = "summary-result"
+	summaryDiv.innerHTML =
+		`<h3>Bottom Line</h3>\
+${writeData("Real Cost per Hour", `${formatCurrency(realHourlyOperatingCost)}/hr`)}\
+<small>(Annual Fixed Costs/Hours Flown per Year) + Total Operating Cost per Hour</small><br>\
+<small>(${annualFixedCosts}/${hoursPerYear}) + ${totalOperatingCost}</small><br>\
+<br>\
+${writeData("Total Cost of Ownership per Year", formatCurrency(annualOwnershipCost))}\
+<small>(Total Operating Cost per Hour * Hours Flown per Year) + Annual Fixed Costs</small><br>\
+<small>(${totalOperatingCost} * ${hoursPerYear}) + ${annualFixedCosts}</small><br>\
+<br>\
+<strong><small>${finalStatement}</small></strong>
+`
+
+	summaryResultsDiv.innerHTML = ""
+	summaryResultsDiv.appendChild(summaryDiv)
 }
 
 (function($) {
